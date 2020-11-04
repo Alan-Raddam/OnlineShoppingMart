@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog4</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <div id="banner">
+    <h1>My Blogs IV</h1>
+  </div>
+  <div id="left-panel">
+    Left Panel
+  </div>
+
+  <div id="main-panel">
+    <%= yield %>
+  </div>
+
+  <div id="footer">
+    Copyright alangy &copy; 2020
+  </div>
+
+
+  </body>
+</html>

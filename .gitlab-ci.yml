@@ -1,0 +1,21 @@
+test:
+  stage: test
+  script:
+    - cd blog4
+    - bundle install
+    - rails db:migrate RAILS_ENV=test
+    - rails test
+  only:
+    - blog4
+
+deploy:
+  stage: deploy
+  script:
+    - puma-stop 4000
+    - rsync -arv --delete ./blog4 ~
+    - cd ~/blog4
+    - bundle install
+    - rails db:migrate
+    - nohup rails server -d -b 0.0.0.0 -p 4000 &
+  only:
+    - blog4
