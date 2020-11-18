@@ -1,8 +1,12 @@
-<div>
+<div id="comment_<%=comment.id %>">
   <p>
-    <strong>Posted
-      <%= time_ago_in_words(comment.created_at) %>
-    </strong><br />
+    <strong>用户 <%= comment.user.email %> 发表于
+      <%= time_ago_in_words(comment.created_at) %>前
+
+      <% if !current_user.nil? && (current_user == comment.user||current_user==comment.blog.user) %>
+        <%= link_to "删除此评论", blog_comment_path(comment.blog_id,comment.id), method: :delete ,remote:true%>
+      <% end %>
+    </strong><br/>
     <%= comment.content %>
   </p>
 </div>

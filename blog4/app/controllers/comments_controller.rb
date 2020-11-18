@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
+  include ApplicationHelper
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate,only: [:new,:edit,:update,:create,:destroy]
   # GET /comments
   # GET /comments.json
   def index
@@ -15,6 +16,7 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
+    @comment.user=current_user
   end
 
   # GET /comments/1/edit
@@ -40,10 +42,12 @@ class CommentsController < ApplicationController
     @blog = Blog.find(params[:blog_id])
     @comment = Comment.new(comment_params)
     @comment.blog = @blog
+    @comment.user=current_user
 
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @blog, notice: 'Comment was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render "blogs/show" }
@@ -56,10 +60,12 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    @blog=@comment.blog
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to @blog , notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 
