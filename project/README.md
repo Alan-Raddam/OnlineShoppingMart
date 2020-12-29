@@ -77,29 +77,29 @@ alan@buaa.edu.cn
 
 ### 添加喜欢动图演示
 
-![](.\ReadmePic\添加喜欢.gif)
+![](./ReadmePic/添加喜欢.gif)
 
 ### 购买商品动图演示
 
-![](.\ReadmePic\购买商品.gif)
+![](./ReadmePic/购买商品.gif)
 
 ### 查看账户信息动图演示
 
-![](.\ReadmePic\查看账户信息.gif)
+![](./ReadmePic/查看账户信息.gif)
 
 ### 管理员后台首页
 
-![](.\ReadmePic\管理员后台.png)
+![](./ReadmePic/管理员后台.png)
 
 ### 查看所有订单
 
-![](.\ReadmePic\管理员-查看所有订单.png)
+![](./ReadmePic/管理员-查看所有订单.png)
 
 ### 编辑，删除商品
 
-![](.\ReadmePic\编辑商品入口流程.gif)
+![](./ReadmePic/编辑商品入口流程.gif)
 
 ### 新增商品，支持文件上传的动图演示
 
-![](.\ReadmePic\新增商品.gif)
+![](./ReadmePic/新增商品.gif)
 
