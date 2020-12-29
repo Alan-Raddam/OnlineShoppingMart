@@ -73,7 +73,7 @@ alan@buaa.edu.cn
 
 ### 首页
 
-![](.\ReadmePic\frontpage.png)
+![](./ReadmePic/frontpage.png)
 
 ### 添加喜欢动图演示
 
