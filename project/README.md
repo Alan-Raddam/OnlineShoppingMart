@@ -6,7 +6,7 @@
 
 本系统遵照作业布置PPT中最高难度在线商城的任务要求完成，并加入了一些我认为在真实商城中需要的功能。
 
-本网页的后端完全独立开发，前端基于多套前端框架元素组合而成，我将进行了必要的组合，从静态html适配到动态网站，并进行了适当兼容性适配以适合Ruby on rails框架。
+本网页的后端完全独立开发，前端基于多套前端框架的元素组合而成，我将进行了必要的组合，从静态html适配到动态网站，并进行了适当兼容性适配以适合Ruby on rails框架。
 
 身份实体：共两个，分别为客户和管理员
 
@@ -33,7 +33,7 @@
 管理员功能：（入口路径  /admin）
 
 * 添加/编辑/查看/删除产品
-* 上传/删除产品效果图
+* 上传/删除产品效果图（支持文件上传）
 * 查看所有订单列表
 * 处理订单（发货，取消，退款）
 * 查看统计报表（例如客户量，商品销售量，总销售额）
@@ -51,7 +51,7 @@ test@buaa.edu.cn
 
 管理员用户测试账号:
 
-admin@buaa.edu.cn
+alan@buaa.edu.cn
 
 密码: 123456
 
@@ -69,18 +69,39 @@ admin@buaa.edu.cn
 
 在某些非常偶然的情况下，会出现在后台管理中，表单加载异常或者表单的下拉功能栏目无法点开的问题，该问题是由于rails6中的turbo-link机制导致表格的js未能正常刷新导致。我已经进行了必要的适配，**经过修改后该问题暂未复现**。如果不幸恰好出现，重新刷新页面即可。
 
-## 部分入口不是很直观的功能的演示截图
+## 部分功能流程演示
+
+### 首页
+
+![](C:\BUAA2020F\ruby\homework\project\ReadmePic\frontpage.png)
 
 
 
+### 添加喜欢动图演示
 
+![](C:\BUAA2020F\ruby\homework\project\ReadmePic\添加喜欢.gif)
 
+### 购买商品动图演示
 
+![](C:\BUAA2020F\ruby\homework\project\ReadmePic\购买商品.gif)
 
+### 查看账户信息动图演示
 
+![](C:\BUAA2020F\ruby\homework\project\ReadmePic\查看账户信息.gif)
 
+### 管理员后台首页
 
+![](C:\BUAA2020F\ruby\homework\project\ReadmePic\管理员后台.png)
 
-* 管理员后台首页
-* 
+### 查看所有订单
+
+![](C:\BUAA2020F\ruby\homework\project\ReadmePic\管理员-查看所有订单.png)
+
+### 编辑，删除商品
+
+![](C:\BUAA2020F\ruby\homework\project\ReadmePic\编辑商品入口流程.gif)
+
+### 新增商品，支持文件上传的动图演示
+
+![](C:\BUAA2020F\ruby\homework\project\ReadmePic\新增商品.gif)
 

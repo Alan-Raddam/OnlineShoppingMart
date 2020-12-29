@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   match 'favorites/remove', to: 'favorites#destroy', as: "remove_product_favorites", via: :post
   match 'favorites/reverse', to: 'favorites#reverse', via: :post
   match 'users/:id/change_password', to: 'users#change_password', via: :post, as: "change_password"
+  match 'api/getmoney',to:"transaction_orders#setpaid", via: :get, as:"receive_money"
 end

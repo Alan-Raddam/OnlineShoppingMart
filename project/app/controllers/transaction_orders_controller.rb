@@ -12,6 +12,15 @@ class TransactionOrdersController < ApplicationController
     @transaction_orders = TransactionOrder.all
   end
 
+  def setpaid
+    @transaction_order=TransactionOrder.find(params[:id])
+    if @transaction_order.sstatus==0
+      @transaction_order.sstatus=1
+      @transaction_order.save
+    end
+    redirect_to @transaction_order
+  end
+
 
   # GET /transaction_orders/1
   # GET /transaction_orders/1.json
