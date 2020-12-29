@@ -1,0 +1,134 @@
+<%= render 'application/header_admin' %>
+<div class="main-container">
+  <div class="pd-ltr-20">
+    <div class="card-box pd-20 height-100-p mb-30">
+      <div class="row align-items-center">
+        <div class="col-md-4">
+          <img src="vendors/images/banner-img.png" alt="">
+        </div>
+        <div class="col-md-8">
+          <h4 class="font-20 weight-500 mb-10 text-capitalize">
+            欢迎回来，管理员
+            <div class="weight-600 font-30 text-blue"><%= current_user.name %></div>
+          </h4>
+          <p class="font-18 max-width-600">你可以在这里管理所有商品，订单，用户，支付方式，前台展示横幅等。</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-3 mb-30">
+        <div class="card-box height-100-p widget-style1">
+          <div class="d-flex flex-wrap align-items-center">
+            <div class="progress-data">
+              <div id="chart"></div>
+            </div>
+            <div class="widget-data">
+              <div class="h4 mb-0"><%= User.where(isadmin: false).count %></div>
+              <div class="weight-600 font-14">注册顾客</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 mb-30">
+        <div class="card-box height-100-p widget-style1">
+          <div class="d-flex flex-wrap align-items-center">
+            <div class="progress-data">
+              <div id="chart2"></div>
+            </div>
+            <div class="widget-data">
+              <div class="h4 mb-0"><%= TransactionOrder.count %></div>
+              <div class="weight-600 font-14">订单</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 mb-30">
+        <div class="card-box height-100-p widget-style1">
+          <div class="d-flex flex-wrap align-items-center">
+            <div class="progress-data">
+              <div id="chart3"></div>
+            </div>
+            <div class="widget-data">
+              <div class="h4 mb-0"><%=TransactionOrder.where(sstatus: 1).count %></div>
+              <div class="weight-600 font-14">待发货订单</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 mb-30">
+        <div class="card-box height-100-p widget-style1">
+          <div class="d-flex flex-wrap align-items-center">
+            <div class="progress-data">
+              <div id="chart4"></div>
+            </div>
+            <div class="widget-data">
+              <div class="h4 mb-0">¥<%=TransactionOrder.where("sstatus=1 or sstatus=2 or sstatus=4").sum(:sum) %></div>
+              <div class="weight-600 font-14">总销售额</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-box mb-30">
+      <h2 class="h4 pd-20">商品列表</h2>
+      <table class="data-table table nowrap ">
+        <thead>
+        <tr>
+          <th class="table-plus datatable-nosort">商品</th>
+          <th>商品名</th>
+          <th>单价</th>
+          <th>销量</th>
+          <th>商品上架时间</th>
+          <th>最新下单时间</th>
+          <th class="datatable-nosort">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @best_sell.each do |x| %>
+          <tr>
+            <td class="table-plus">
+              <% unless x.pics.size == 0 %>
+                <img src="<%= Product.find(x.product_final_id).pics[0].url %>" width="70" height="70" alt="">
+              <% end %>
+            </td>
+            <td>
+              <h5 class="font-16"><%= x.name %></h5>
+            </td>
+            <td>¥<%= x.price %></td>
+            <% if x.totalsell.nil? %>
+              <td>0</td>
+            <% else %>
+              <td><%= x.totalsell %></td>
+            <% end %>
+            <td><%= Product.find(x.product_final_id).created_at %></td>
+            <% if OrderProduct.where(product_id: x.product_final_id).order('created_at DESC').count != 0 %>
+              <td><%= OrderProduct.where(product_id: x.product_final_id).order('created_at DESC').first.created_at %></td>
+            <% else %>
+              <td>还没有人下单</td>
+            <% end %>
+
+            <td>
+              <div class="dropdown">
+                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                  <i class="dw dw-more"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                  <a class="dropdown-item" href="<%= product_path x.product_final_id %>"><i class="dw dw-eye"></i> 查看商品</a>
+                  <a class="dropdown-item" href="<%= edit_product_path x.product_final_id %>"><i class="dw dw-edit2"></i>
+                    编辑商品</a>
+                  <%= link_to raw("<i class=\"dw dw-delete-3\"></i> 删除商品</a>"), (product_path x.product_final_id), :method => :delete, class: "dropdown-item" %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer-wrap pd-20 mb-20 card-box">
+      电子商务管理后台 2020Ruby大作业
+      <a href="email://alangy@buaa.edu.cn" target="_blank">By alangy</a>
+    </div>
+  </div>
+</div>
+<%= render 'footer_admin' %>

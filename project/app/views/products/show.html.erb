@@ -1,0 +1,346 @@
+<%= render 'header' %>
+<!-- ::::::  Start  Breadcrumb Section  ::::::  -->
+<div class="page-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="page-breadcrumb__menu">
+          <li class="page-breadcrumb__nav"><a href="#">主页</a></li>
+          <li class="page-breadcrumb__nav active">查看商品详情</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> <!-- ::::::  End  Breadcrumb Section  ::::::  -->
+
+<!-- :::::: Start Main Container Wrapper :::::: -->
+<main id="main-container" class="main-container">
+
+  <!-- Start Product Details Gallery -->
+  <div class="product-details">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="product-gallery-box product-gallery-box--default m-b-60">
+            <div class="product-image--large product-image--large-horizontal">
+              <% if @product.pics.size != 0 %>
+                <img class="img-fluid" id="img-zoom" src="<%= @product.pics[0].url %>" data-zoom-image="<%= @product.pics[0].url %>" alt="">
+              <% end %>
+            </div>
+            <div id="gallery-zoom" class="product-image--thumb product-image--thumb-horizontal pos-relative">
+              <% @product.pics.each do |x| %>
+                <a class="zoom-active" data-image="<%= x.url %>" data-zoom-image="<%= x.url %>">
+                  <img class="img-fluid" src="<%= x.url %>" alt="">
+                </a>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="product-details-box m-b-60">
+            <h5 class="title title--normal m-b-20"><%= @product.name %></h5>
+            <div class="product__price">
+              <span class="product__price-del">¥<%= @product.price * 1.2 %></span>
+              <span class="product__price-reg">¥<%= @product.price %></span>
+            </div>
+
+            <div class="product__desc m-t-25 m-b-30">
+              <p><%= @product.description.html_safe %></p>
+              <input id='global_id' hidden value="<%= @product.id %>"></input>
+            </div>
+            <div class="product-var p-tb-30">
+              <div class="product__stock m-b-20">
+                <span class="product__stock--in"><i class="fas fa-check-circle"></i> 该商品库存充足</span>
+              </div>
+              <div class="product-quantity product-var__item">
+                <span class="product-var__text">购买数量</span>
+                <div class="product-quantity-box">
+                  <div class="quantity">
+                    <input id='quantity' type="number" min="1" max="9" step="1" value="1">
+                  </div>
+                  <% if isadmin? %>
+                    &emsp;&emsp;&emsp;&emsp;<%= link_to "管理员不能购买商品，点此编辑此商品", (edit_product_path @product), class: "small" %>
+                  <% else %>
+                    <a href="#modalAddCart" id='add_to_cart' from="<%= @product.id %>" data-toggle="modal" data-target="#modalAddCart" class="btn btn--box btn--radius btn--small btn--black btn--black-hover-red btn--uppercase btn--weight m-l-20">+
+                      添加到购物车</a>
+                  <% end %>
+                </div>
+              </div>
+              <div class="product-links">
+                <% if (current_user == nil || (current_user != nil && Favorite.where(user_id: current_user.id, product_id: @product.id).size == 0)) %>
+                  <button onclick="reversefav(<%=@product.id %>)" class="link--gray link--icon-left shop__wishlist-icon m-b-5 m-r-20">
+                    <i id="fav<%= @product.id %>" class="ion-android-favorite-outline"></i>收藏
+                  </button>
+                <% else %>
+                  <button onclick="reversefav(<%=@product.id %>)" class="link--gray link--icon-left shop__wishlist-icon m-b-5 m-r-20">
+                    <i class="ion-android-favorite" id="fav<%= @product.id %>"></i>收藏
+                  </button>
+                <% end %>
+              </div>
+              <div class="nametag p-tb-10">
+                <span>所属分类:</span>
+                <ul class="nametag__list">
+                  <li><%= link_to @product.product_type.product_type_name, @product.product_type %></li>
+                </ul>
+              </div>
+              <div class="nametag p-tb-10">
+                <span>和朋友分享此商品</span>
+                <ul class="nametag__list">
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Product Details Gallery -->
+
+  <!-- Start Product Details Tab -->
+  <div class="product-details-tab-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ul class="tablist tablist--style-black tablist--style-title tablist--style-gap-70 nav">
+            <li><a class="nav-link active" data-toggle="tab" href="#product-desc">商品描述</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#product-dis">商品参数</a></li>
+            <li><a class="nav-link" data-toggle="tab" href="#product-review">评价</a></li>
+          </ul>
+        </div>
+        <div class="col-md-12">
+          <div class="product-details-tab-box">
+            <div class="tab-content">
+              <!-- Start Tab - Product Description -->
+              <div class="tab-pane show active" id="product-desc">
+                <div class="para__content">
+                  <%= @product.detail.html_safe %>
+                </div>
+              </div>  <!-- End Tab - Product Description -->
+
+              <!-- Start Tab - Product Details -->
+              <div class="tab-pane" id="product-dis">
+                <div class="product-dis__content">
+                  <a href="#" class="product-dis__img m-b-30"><img src="../assets/img/logo/another-logo.jpg" alt=""></a>
+                  <div class="table-responsive-md">
+                    <table class="product-dis__list table table-bordered">
+                      <tbody>
+                      <tr>
+                        <td class="product-dis__title">颜色款式</td>
+                        <% if @product.color.nil? %>
+                          <td class="product-dis__text">暂无颜色信息</td>
+                        <% else %>
+                          <td class="product-dis__text"><%= @product.color.description %></td>
+                        <% end %>
+                      </tr>
+                      <tr>
+                        <td class="product-dis__title">材质</td>
+                        <td class="product-dis__text"><%= @product.material %></td>
+                      </tr>
+                      <tr>
+                        <td class="product-dis__title">大小</td>
+                        <td class="product-dis__text"><%= @product.size %></td>
+                      </tr>
+                      <tr>
+                        <td class="product-dis__title">其他信息</td>
+                        <td class="product-dis__text">该商品没有其他属性信息。
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>  <!-- End Tab - Product Details -->
+
+              <!-- Start Tab - Product Review -->
+              <div class="tab-pane " id="product-review">
+                <!-- Start - Review Comment -->
+                <ul class="comment">
+                  <!-- Start - Review Comment list-->
+                  <li class="comment__list">
+                    <p>商品评价功能暂不开放</p>
+                  </li>
+                </ul>
+              </div>  <!-- Start Tab - Product Review -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  <!-- End Product Details Tab -->
+
+  <!-- ::::::  Start  Product Style - Default Section  ::::::  -->
+  <div class="product m-t-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <!-- Start Section Title -->
+          <div class="section-content m-b-35 text-center">
+            <h5 class="section-content__title">猜你喜欢</h5>
+            <a href="<%= inspect_all_path %>" class="section-content__desc">查看全部商品</a>
+          </div>  <!-- End Section Title -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="default-slider default-slider--hover-bg-red product-default-slider">
+            <div class="product-default-slider-4grid-1rows gap__col--30 gap__row--40">
+              <% @guess_likes.each do |x| %>
+                <div class="product__box product__box--default">
+                  <!-- Start Product Image -->
+                  <div class="product__img-box">
+                    <a href="<%= product_path x %>" class="product__img--link">
+                      <% if x.pics.size == 1 %>
+                        <img class="product__img" src="<%= x.pics[0].url %>" alt="">
+                      <% else %>
+                        <% if x.pics.size > 1 %>
+                          <img class="product__img" src="<%= x.pics[0].url %>" alt="">
+                          <img class="product__img" src="<%= x.pics[1].url %>" alt="">
+                        <% end %>
+                      <% end %>
+                    </a>
+                    <!-- Start Product Image Inner Nav-->
+                    <ul class="product__img-nav--right pos-absolute">
+                      <li>
+                        <button onclick="reversefav(<%=x.id %>)">
+                          <% if (current_user == nil || (current_user != nil && Favorite.where(user_id: current_user.id, product_id: x.id).size == 0)) %>
+                            <i id="fav<%= x.id %>" class="ion-android-favorite-outline"></i></button>
+                          <% else %>
+                            <i id="fav<%= x.id %>" class="ion-android-favorite"></i></button>
+                          <% end %>
+                          </li>
+                    </ul> <!-- End Product Image Inner Nav -->
+                  </div> <!-- End Product Image -->
+                  <!-- Start Product Content -->
+                  <div class="product__content pos-relative">
+                    <a href="<%= product_path x %>" class="product__link product__link--weight-light m-t-15">
+                      <%= x.name %></a>
+                    <ul class="product__review m-t-5">
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--blank"><i class="ion-android-star"></i></li>
+                    </ul>
+                    <div class="product__price m-t-5">
+                      <span class="product__price-reg">¥<%= x.price %></span>
+                    </div>
+                    <!-- Start Product Content Inner Nav -->
+                    <ul class="product__content--bottom product__content--bottom-white pos-absolute">
+                      <li>
+                        <a href="#modalAddCart" id='add_to_cart' from="<%= x.id %>" data-toggle="modal"><i class="ion-bag"></i>添加到购物车</a>
+                      </li>
+                    </ul> <!-- End Product Content Inner Nav -->
+                  </div> <!-- End Product Content -->
+                </div> <!-- End Single Default Product -->
+
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- ::::::  End  Product Style - Default Section  ::::::  -->
+
+  <!-- ::::::  Start  Product Style - Default Section  ::::::  -->
+
+
+</main>  <!-- :::::: End MainContainer Wrapper :::::: -->
+
+<!-- material-scrolltop button -->
+<button class="material-scrolltop" type="button"></button>
+
+
+
+<!-- Start Modal Quickview cart -->
+<div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center">Quick View</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"> <i class="fal fa-times"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="product-gallery-box m-b-60">
+                <div class="modal-product-image--large">
+                  <img class="img-fluid" src="../assets/img/product/gallery/gallery-large/product-gallery-large-1.jpg" alt="">
+                  <img class="img-fluid" src="../assets/img/product/gallery/gallery-large/product-gallery-large-2.jpg" alt="">
+                  <img class="img-fluid" src="../assets/img/product/gallery/gallery-large/product-gallery-large-3.jpg" alt="">
+                  <img class="img-fluid" src="../assets/img/product/gallery/gallery-large/product-gallery-large-4.jpg" alt="">
+                  <img class="img-fluid" src="../assets/img/product/gallery/gallery-large/product-gallery-large-5.jpg" alt="">
+                </div>
+                <div class="modal-product-image--thumb modal-product-image--thumb-horizontal pos-relative">
+                  <img class="img-fluid" src="../assets/img/product/gallery/gallery-thumb/product-gallery-thumb-1.jpg" alt="">
+                  <img class="img-fluid" src="../assets/img/product/gallery/gallery-thumb/product-gallery-thumb-2.jpg" alt="">
+                  <img class="img-fluid" src="../assets/img/product/gallery/gallery-thumb/product-gallery-thumb-3.jpg" alt="">
+                  <img class="img-fluid" src="../assets/img/product/gallery/gallery-thumb/product-gallery-thumb-4.jpg" alt="">
+                  <img class="img-fluid" src="../assets/img/product/gallery/gallery-thumb/product-gallery-thumb-5.jpg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="product-details-box">
+                <h5 class="title title--normal m-b-20">Aliquam lobortis</h5>
+                <div class="product__price">
+                  <span class="product__price-del">$35.90</span>
+                  <span class="product__price-reg">$31.69</span>
+                </div>
+                <div class="product__stock m-tb-20">
+                  <span class="product__stock--in"><i class="fas fa-check-circle"></i> 199 IN STOCK</span>
+                </div>
+                <div class="product-var p-t-30">
+                  <div class="product-color product-var__item">
+                    <span class="product-var__text">Color</span>
+                    <div class="sidebar__color-filter ">
+                      <label class="product-color"><input name="product-color" type="radio" class="product-color-select" value="color-red"><span></span></label>
+                      <label class="product-color"><input name="product-color" type="radio" class="product-color-select" value="color-green" checked><span></span></label>
+                      <label class="product-color"><input name="product-color" type="radio" class="product-color-select" value="color-blue"><span></span></label>
+                    </div>
+                  </div>
+                  <div class="product-quantity product-var__item">
+                    <span class="product-var__text">Quantity</span>
+                    <div class="product-quantity-box">
+                      <div class="quantity">
+                        <input type="number" min="1" max="9" step="1" value="1">
+                      </div>
+                      <a href="#modalAddCart" data-toggle="modal" data-dismiss="modal" class="btn btn--box btn--radius btn--small btn--black btn--black-hover-red btn--uppercase btn--weight m-l-20">+
+                        Add to cart</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="product__desc m-t-25 m-b-30">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco,Proin
+                    lectus ipsum, gravida et mattis vulputate, tristique ut lectus</p>
+                </div>
+
+                <div class="product-links">
+                  <div class="product-social m-tb-30">
+                    <span>SHARE THIS PRODUCT</span>
+                    <ul class="product-social-link">
+                      <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                      <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Modal Quickview cart -->
+<%= render 'footer' %>
