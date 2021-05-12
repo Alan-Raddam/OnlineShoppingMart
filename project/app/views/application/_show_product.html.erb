@@ -1,0 +1,225 @@
+<!--所有需要展示的商品使用@products进行标识，注意数据完整性。-->
+<%= render 'application/header' %>
+
+<!-- ::::::  Start  Breadcrumb Section  ::::::  -->
+<div class="page-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="page-breadcrumb__menu">
+          <li class="page-breadcrumb__nav"><a href="#">首页</a></li>
+          <li class="page-breadcrumb__nav active"><%= @name %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> <!-- ::::::  End  Breadcrumb Section  ::::::  -->
+
+<!-- :::::: Start Main Container Wrapper :::::: -->
+<main id="main-container" class="main-container">
+  <div class="container">
+    <div class="row flex-column-reverse flex-lg-row">
+      <!-- Start Leftside - Sidebar -->
+      <div class="col-lg-3">
+        <div class="sidebar">
+          <!-- Start Single Sidebar Widget -->
+          <div class="sidebar__widget">
+            <div class="sidebar__box">
+              <h5 class="sidebar__title">所有商品分类</h5>
+            </div>
+            <ul class="sidebar__menu">
+              <% @product_types.each do |x| %>
+                <li><%= link_to x.product_type_name, x %></li>
+              <% end %>
+            </ul>
+          </div>  <!-- End Single Sidebar Widget -->
+
+
+          <!-- ::::::  Start banner Section  ::::::  -->
+          <div class="sidebar__widget banner">
+            <div class="row">
+              <div class="col-12">
+                <div class="banner__box">
+                  <a href="product-single-default.html" class="banner__link text-center">
+                    <img src="/assets/img/banner/size-port/img-sidebar.jpg" alt="" class="banner__img">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div> <!-- ::::::  End banner Section  ::::::  -->
+        </div>
+      </div> <!-- End Left Sidebar -->
+      <!-- Start Rightside - Content -->
+      <div class="col-lg-9">
+        <!-- ::::::  Start Sort Box Section  ::::::  -->
+        <div class="sort-box m-b-40">
+          <!-- Start Sort Left Side -->
+          <div class="sort-box__left">
+            <div class="sort-box__tab">
+              <ul class="sort-box__tab-list nav">
+                <li><a class="sort-nav-link active" data-toggle="tab" href="#sort-grid"><i class="fas fa-th"></i> </a>
+                </li>
+                <li><a class="sort-nav-link" data-toggle="tab" href="#sort-list"><i class="fas fa-list-ul"></i></a></li>
+              </ul>
+            </div>
+            <span>一共有<%= @count %>件商品</span>
+          </div> <!-- Start Sort Left Side -->
+
+          <div class="sort-box__right">
+            <span>排序</span>
+            <div class="sort-box__option">
+              <label class="select-sort__arrow">
+                <select name="select-sort" class="select-sort">
+                  <option value="1">相关性</option>
+                  <option value="2">名字升序</option>
+                  <option value="3">名字降序</option>
+                  <option value="4">价格从低到高</option>
+                  <option value="5">价格从高到低</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </div> <!-- ::::::  Start Sort Box Section  ::::::  -->
+
+        <div class="product-tab-area">
+          <div class="tab-content">
+            <div class="tab-pane show active shop-grid" id="sort-grid">
+              <div class="row">
+                <% @products.each do |x| %>
+                  <div class="col-md-4 col-sm-6 col-12">
+                    <!-- Start Single Default Product -->
+                    <div class="product__box product__box--default">
+                      <!-- Start Product Image -->
+                      <div class="product__img-box">
+                        <a href="<%= product_path x %>" class="product__img--link">
+                          <% if x.pics.size == 1 %>
+                            <img class="product__img" src="<%= x.pics[0].url %>" alt="">
+                          <% else %>
+                            <% if x.pics.size > 1 %>
+                              <img class="product__img" src="<%= x.pics[0].url %>" alt="">
+                              <img class="product__img" src="<%= x.pics[1].url %>" alt="">
+                            <% end %>
+                          <% end %>
+                        </a>
+                        <!-- Start Product Image Inner Nav-->
+
+                        <ul class="product__img-nav--right pos-absolute">
+                          <li>
+                            <button onclick="reversefav(<%=x.id %>)">
+                              <% if (current_user == nil || (current_user != nil && Favorite.where(user_id: current_user.id, product_id: x.id).size == 0)) %>
+                                <i id="fav<%= x.id %>" class="ion-android-favorite-outline"></i></button>
+                              <% else %>
+                                <i id="fav<%= x.id %>" class="ion-android-favorite"></i></button>
+                              <% end %>
+                              </li>
+                        </ul> <!-- End Product Image Inner Nav -->
+                      </div> <!-- End Product Image -->
+                      <!-- Start Product Content -->
+                      <div class="product__content pos-relative">
+                        <a href="<%= product_path x %>" class="product__link product__link--weight-light m-t-15">
+                          <%= x.name %></a>
+                        <ul class="product__review m-t-5">
+                          <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                          <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                          <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                          <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                          <li class="product__review--blank"><i class="ion-android-star"></i></li>
+                        </ul>
+                        <div class="product__price m-t-5">
+                          <span class="product__price-reg">¥<%= x.price %></span>
+                        </div>
+                        <!-- Start Product Content Inner Nav -->
+                        <ul class="product__content--bottom product__content--bottom-white pos-absolute">
+                          <li>
+                            <a href="#modalAddCart" id='add_to_cart' from="<%= x.id %>" data-toggle="modal"><i class="ion-bag"></i>添加到购物车</a>
+                          </li>
+                          <li>
+                            <a href="#modalQuickView" data-toggle="modal"><i class="ion-ios-search"></i>快速浏览</a>
+                          </li>
+                        </ul> <!-- End Product Content Inner Nav -->
+                      </div> <!-- End Product Content -->
+                    </div> <!-- End Single Default Product -->
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="tab-pane shop-list" id="sort-list">
+
+              <% @products.each do |x| %>
+
+                <!-- Start Single List Product -->
+                <div class="product__box product__box--list">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <!-- Start Product Image -->
+                      <div class="product__img-box">
+                        <a href="<%= product_path x %>" class="product__img--link">
+                          <% if x.pics.size == 1 %>
+                            <img class="product__img" src="<%= x.pics[0].url %>" alt="">
+                          <% else %>
+                            <% if x.pics.size > 1 %>
+                              <img class="product__img" src="<%= x.pics[0].url %>" alt="">
+                              <img class="product__img" src="<%= x.pics[1].url %>" alt="">
+                            <% end %>
+                          <% end %>
+                        </a>
+                        <!-- Start Product Image Inner Nav-->
+                        <ul class="product__img-nav--right pos-absolute">
+                          <li>
+                            <button onclick="reversefav(<%=x.id %>)">
+                              <% if (current_user == nil || (current_user != nil && Favorite.where(user_id: current_user.id, product_id: x.id).size == 0)) %>
+                                <i id="fav2<%= x.id %>" class="ion-android-favorite-outline"></i></button>
+                              <% else %>
+                                <i id="fav2<%= x.id %>" class="ion-android-favorite"></i></button>
+                              <% end %>
+                              </li>
+                        </ul> <!-- End Product Image Inner Nav -->
+                      </div> <!-- End Product Image -->
+                    </div>
+                    <div class="col-sm-8 pos-relative">
+                      <!-- Start Product Content -->
+                      <div class="product__content pos-relative">
+                        <a href="<%= product_path x %>" class="product__link product__link--weight-bold"><%= x.name %></a>
+                        <ul class="product__review m-t-5">
+                          <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                          <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                          <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                          <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                          <li class="product__review--blank"><i class="ion-android-star"></i></li>
+                        </ul>
+                        <div class="product__price m-t-15">
+                          <span class="product__price-reg">¥<%= x.price %></span>
+                        </div>
+                        <div class="product__desc m-t-30 m-b-55">
+                          <p><%= x.description %></p>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-8 col-md-10 col-lg-8">
+                            <div class="pos-relative">
+                              <!-- Start Product Content Inner Nav -->
+                              <ul class="product__content--bottom product__content--bottom-white pos-absolute">
+                                <li>
+                                  <a href="#modalAddCart" data-toggle="modal"><i class="ion-bag"></i>添加到购物车</a>
+                                </li>
+                                <li>
+                                  <a href="#modalQuickView" data-toggle="modal"><i class="ion-ios-search"></i>快速浏览</a>
+                                </li>
+                              </ul> <!-- End Product Content Inner Nav -->
+                            </div>
+                          </div>
+                        </div>
+                      </div> <!-- End Product Content -->
+                    </div>
+                  </div>
+                </div> <!-- Start Single List Product -->
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>  <!-- Start Rightside - Content -->
+    </div>
+  </div>
+</main>  <!-- :::::: End MainContainer Wrapper :::::: -->
+
+<%= render 'application/footer' %>
+

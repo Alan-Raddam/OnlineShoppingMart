@@ -1,0 +1,63 @@
+<%= render 'application/header' %>
+<!-- ::::::  Start  Breadcrumb Section  ::::::  -->
+<div class="page-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="page-breadcrumb__menu">
+          <li class="page-breadcrumb__nav"><a href="#">Home</a></li>
+          <li class="page-breadcrumb__nav active">Login</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> <!-- ::::::  End  Breadcrumb Section  ::::::  -->
+
+<!-- ::::::  Start  Main Container Section  ::::::  -->
+<main id="main-container" class="main-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-content m-b-40">
+          <h5 class="section-content__title text-center">我的账户</h5>
+        </div>
+      </div>
+      <!-- Start Login Area -->
+      <div class="col-lg-4 col-12">
+
+        <img src="/assets/img/company-logo/user.svg" class="img-responsive" alt="Logo">
+
+      </div>
+      <div class="col-lg-8 col-12">
+        <div class="login-form-container">
+          <h5 class="sidebar__title">登录</h5>
+          <div class="login-register-form">
+            <form action="/users/sign_in" method="post">
+              <%=tag(:input, type: "hidden", name: request_forgery_protection_token.to_s, value: form_authenticity_token) %>
+              <div class="form-box__single-group">
+                <label for="form-email"> 电子邮箱 *</label>
+                <input type="email" id="user_email" name="user[email]" placeholder="Username" required>
+              </div>
+              <div class="form-box__single-group">
+                <label for="form-username-password">密码 *</label>
+                <div class="password__toggle">
+                  <input type="password" id="user_password" name="user[password]" placeholder="Enter password" required>
+                  <span data-toggle="#form-username-password" class="password__toggle--btn fa fa-fw fa-eye"></span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between flex-wrap m-tb-20">
+                <label for="account-remember">
+                  <input type="checkbox"  id="user_remember_me" name="user[remember_me]">
+                  <span>记住登录状态</span>
+                </label>
+                <a class="link--gray" href="#">忘记密码?</a>
+              </div>
+              <button class="btn btn--box btn--small btn--radius btn--black btn--black-hover-red btn--uppercase font--semi-bold" type="submit">登录</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main> <!-- ::::::  End  Main Container Section  ::::::  -->
+<%=render 'application/footer' %>

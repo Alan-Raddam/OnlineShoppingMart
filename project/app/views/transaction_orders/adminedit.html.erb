@@ -1,0 +1,171 @@
+<%= render 'header_admin' %>
+
+<div class="main-container">
+  <div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="title">
+              <h4>处理订单</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><%= link_to "管理后台", admin_path %></li>
+                <li class="breadcrumb-item"><%= link_to "所有订单", transaction_orders_path %></li>
+                <li class="breadcrumb-item active" aria-current="page">处理订单</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-md-6 col-sm-12 text-right">
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                January 2018
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Export List</a>
+                <a class="dropdown-item" href="#">Policies</a>
+                <a class="dropdown-item" href="#">View Assets</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Default Basic Forms Start -->
+
+
+      <div class="pd-20 card-box mb-30">
+        <div class="clearfix">
+          <div class="pull-left">
+            <h4 class="text-blue h4">编辑订单</h4>
+            <p class="mb-0">您可以在此查看和编辑该订单的详情。</p>
+          </div>
+          <div class="pull-right">
+            <input form="edit_product" type='submit' class="btn btn-primary btn--large scroll-click" rel="content-y" data-toggle="collapse" role="button">
+          </div>
+        </div>
+        <form id='edit_product' enctype="multipart/form-data" action="/transaction_orders/<%= @transaction_order.id %>" accept-charset="UTF-8" method="post">
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">订单ID</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="text" value="<%= @transaction_order.id %>" disabled="disabled">
+            </div>
+          </div>
+          <input hidden="hidden" value="patch" name="_method">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">订单状态</label>
+            <div class="col-sm-12 col-md-10">
+              <select name="transaction_order[sstatus]" class="custom-select col-12">
+                <option value="<%= @transaction_order.sstatus %>" selected=""><%= get_paid_status @transaction_order %></option>
+                <% for i in 0..3 %>
+                  <% if i == @transaction_order.sstatus %>
+                    <% next %>
+                  <% end %>
+                  <option value="<%= i %>"><%= get_paid_status_by_id i%></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">下单用户名</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="text" disabled="disabled" value="<%= @transaction_order.user.name %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">收货人姓名</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="text" name='transaction_order[name]' value="<%= @transaction_order.name %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">收货人电话</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="text" name='transaction_order[phone]' value="<%= @transaction_order.phone %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">收货人邮箱</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="text" name='transaction_order[email]' value="<%= @transaction_order.email %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">收货地址</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="text" name='transaction_order[address]' value="<%= @transaction_order.address %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">邮编</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="text" name='transaction_order[postcode]' value="<%= @transaction_order.postcode %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">订单金额（元）</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="text" disabled="disabled" value="<%= @transaction_order.sum %>">
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- 接下来这里是 -->
+      <div class="card-box mb-30">
+        <h2 class="h4 pd-20">订单中的商品列表</h2>
+        <table class="data-table table nowrap ">
+          <thead>
+          <tr>
+            <th>商品</th>
+            <th>商品名称</th>
+            <th>单价</th>
+            <th>购买件数</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @bought.each do |x| %>
+
+            <tr>
+              <td>
+                <% unless x.pics.size == 0 %>
+                  <img src="<%= Product.find(x.product_id).pics[0].url %>" width="70" height="70" alt="">
+                <% end %>
+              </td>
+              <td class="table-plus">
+                <h5 class="font-16"><%= x.name %></h5>
+              </td>
+              <td>¥<%= x.price %></td>
+              <td><%= x.quantity %></td>
+              <td>
+                <div class="dropdown">
+                  <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <i class="dw dw-more"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="<%= product_path x.product_id %>"><i class="dw dw-eye"></i> 查看商品</a>
+                    <a class="dropdown-item" href="<%= edit_product_path x.product_id %>"><i class="dw dw-edit2"></i>
+                      编辑商品</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Input Validation End -->
+
+  <div class="footer-wrap pd-20 mb-20 card-box">
+    电子商务管理后台 2020Ruby大作业
+    <a href="http://www.bootstrapmb.com/" target="_blank">By alangy</a>
+  </div>
+
+
+</div>
+<%= render 'footer_admin' %>
+</div>

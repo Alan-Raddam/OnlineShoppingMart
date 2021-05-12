@@ -1,0 +1,167 @@
+<%=render 'header' %>
+<!-- ::::::  Start  Breadcrumb Section  ::::::  -->
+<div class="page-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="page-breadcrumb__menu">
+          <li class="page-breadcrumb__nav"><a href="#">主页</a></li>
+          <li class="page-breadcrumb__nav active">查看订单</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> <!-- ::::::  End  Breadcrumb Section  ::::::  -->
+
+<!-- ::::::  Start  Main Container Section  ::::::  -->
+<main id="main-container" class="main-container">
+  <div class="container">
+    <div class="row">
+      <!-- Start Client Shipping Address -->
+      <div class="col-lg-7">
+        <div class="section-content">
+          <h5 class="section-content__title">收货人信息</h5>
+        </div>
+        <form action="#" method="post" class="form-box">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-box__single-group">
+                <label for="form-name">收货人姓名</label>
+                <input type="text" id="form-name" value="<%= @transaction_order.name %>" disabled="disabled">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-box__single-group">
+                <label for="form-postcode">邮编</label>
+                <input type="text" id="form-postcode" value="<%= @transaction_order.postcode %>" disabled="disabled">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-box__single-group">
+                <label for="form-address">收货地址</label>
+                <input type="text" id="form-address" value="<%= @transaction_order.address %>" disabled="disabled">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-box__single-group">
+                <label for="form-phone">收货人电话</label>
+                <input type="text" id="form-phone" value="<%= @transaction_order.phone %>" disabled="disabled">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-box__single-group">
+                <label for="form-email">收货人电子邮箱</label>
+                <input type="email" id="form-email" value="<%= @transaction_order.email %>" disabled="disabled">
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-box__single-group">
+                <h6>附加信息</h6>
+                <label for="form-additional-info">订单备注</label>
+                <textarea id="form-additional-info" rows="5" value="<%= @transaction_order.note %> " disabled="disabled"></textarea>
+              </div>
+            </div>
+            <!-- Add Another Shipping Address -->
+          </div>
+        </form>
+      </div> <!-- End Client Shipping Address -->
+
+      <!-- Start Order Wrapper -->
+      <div class="col-lg-5">
+        <div class="your-order-section">
+          <div class="section-content">
+            <h5 class="section-content__title">订单详情</h5>
+          </div>
+          <div class="your-order-box gray-bg m-t-40 m-b-30">
+            <div class="your-order-product-info">
+              <div class="your-order-top d-flex justify-content-between">
+                <h6 class="your-order-top-left font--bold">商品</h6>
+                <h6 class="your-order-top-right font--bold">价格</h6>
+              </div>
+              <ul class="your-order-middle">
+                <% @totalcost = 0.0 %>
+                <% @transaction_order.order_products.includes(:product).each do |item| %>
+                  <li class="d-flex justify-content-between">
+                    <span class="your-order-middle-left font--semi-bold"><%= item.product.name %>
+                      X <%= item.quantity %></span>
+                    <span class="your-order-middle-right font--semi-bold">¥<%= item.quantity * item.product.price %></span>
+                    <% @totalcost += item.quantity * item.product.price %>
+                  </li>
+                <% end %>
+              </ul>
+              <div class="your-order-bottom d-flex justify-content-between">
+                <h6 class="your-order-bottom-left font--bold">运费</h6>
+                <span class="your-order-bottom-right font--semi-bold">全场免邮</span>
+              </div>
+              <div class="your-order-buttom d-flex justify-content-between">
+                <h5 class="your-order-total-left font--bold">总价</h5>
+                <h5 class="your-order-total-right font--bold">¥<%= @totalcost %></h5>
+
+              </div>
+              <div class="your-order-middle d-flex justify-content-between">
+                <h5 class="your-order-total-left font--bold">订单状态</h5>
+                <h5 class="your-order-total-right font--bold"><%= get_paid_status @transaction_order %></h5>
+              </div>
+
+
+              <% if @transaction_order.sstatus == 0 %>
+
+                <div class="payment-method">
+                  <div class="payment-accordion element-mrg">
+                    <div class="panel-group" id="accordion">
+                      <div class="panel payment-accordion">
+                        <div class="panel-heading" id="method-one">
+                          <h4 class="panel-title">
+                            <a class="collapsed d-flex justify-content-between align-items-center" href="http://www.alipay.com">
+                              点击使用支付宝支付（未接入）
+                            </a>
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="panel payment-accordion">
+                        <div class="panel-heading" id="method-two">
+                          <h4 class="panel-title">
+                            <a class="collapsed d-flex justify-content-between align-items-center" href="https://tencent.com">
+                              点击使用微信支付（未接入）
+                            </a>
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="panel payment-accordion">
+                        <div class="panel-heading" id="method-three">
+                          <h4 class="panel-title">
+                            <a class="collapsed d-flex justify-content-between align-items-center" href="#method3">
+                              点击选择到付
+                            </a>
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="panel payment-accordion">
+                        <div class="panel-heading" id="method-two">
+                          <h4 class="panel-title">
+                            <a class="collapsed d-flex justify-content-between align-items-center" href="<%=receive_money_path%>?id=<%=@transaction_order.id %>">
+                              点此假装进行了付款
+                            </a>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <% if @transaction_order.sstatus == 0 %>
+            <%= link_to "取消订单", @transaction_order, method: :delete, class: "btn btn--block btn--small btn--radius btn--red btn--red-hover-black btn--uppercase font--bold" %>
+          <% end %>
+          <% if @transaction_order.sstatus == 2 %>
+            <%= link_to "确认收货", receive_product_url(@transaction_order), class: "btn btn--block btn--small btn--radius btn--red btn--red-hover-black btn--uppercase font--bold" %>
+          <% end %>
+        </div>
+      </div> <!-- End Order Wrapper -->
+    </div>
+  </div>
+</main> <!-- ::::::  End  Main Container Section  ::::::  -->
+
+<%= render 'footer' %>

@@ -1,0 +1,102 @@
+<%= render 'application/header_admin' %>
+
+<div class="main-container">
+  <div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="title">
+              <h4>订单管理</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><%= link_to "管理后台", admin_path %></li>
+                <li class="breadcrumb-item active" aria-current="page">订单管理</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-md-6 col-sm-12 text-right">
+            <div class="dropdown">
+              <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                January 2018
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Export List</a>
+                <a class="dropdown-item" href="#">Policies</a>
+                <a class="dropdown-item" href="#">View Assets</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Simple Datatable start -->
+      <!-- Export Datatable start -->
+      <div class="card-box mb-30">
+        <div class="pd-20">
+          <h4 class="text-blue h4">所有订单</h4>
+          <p class="mb-0">您可以在此查看所有订单，发货订单，或者采用下面的工具栏导出订单（中文编码会导致乱码，很遗憾目前没有找到Linux上的解决方法）</p>
+          <p class="mb-0">您只能操作发货已付款的订单。</p>
+        </div>
+        <div class="pb-20">
+          <table class="table hover multiple-select-row data-table-export nowrap">
+            <thead>
+            <tr>
+              <th class="table-plus datatable-nosort">订单包含的商品</th>
+              <th>用户名</th>
+              <th>收件人姓名</th>
+              <th>收件地址</th>
+              <th>邮编</th>
+              <th>收件人联系电话</th>
+              <th>收件人电子邮箱</th>
+              <th>订单总额</th>
+              <th>订单状态</th>
+              <th class="datatable-nosort">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @transaction_orders.each do |x| %>
+              <tr>
+                <td class="table-plus">
+                  <%= x.products.first.name %>
+                  <% if x.products.size != 1 %>
+                    ...等商品
+                  <% end %>
+                </td>
+                <td><%=x.user.name %></td>
+                <td><%=x.name %></td>
+                <td><%=x.address %></td>
+                <td><%=x.postcode %></td>
+                <td><%=x.phone %></td>
+                <td><%=x.email %></td>
+                <td><%=x.sum %>元</td>
+                <td><%=get_paid_status x %></td>
+                <td>
+                  <div class="dropdown">
+                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                      <i class="dw dw-more"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                      <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>快速标记为已发货</a>
+                      <a  href="<%=admin_edit_transaction_orders_path x %>" class="dropdown-item"><i class="dw dw-edit2"></i>处理订单</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Export Datatable End -->
+    <div class="footer-wrap pd-20 mb-20 card-box">
+      电子商务管理后台 2020Ruby大作业
+      <a href="email://alangy@buaa.edu.cn" target="_blank">By alangy</a>
+    </div>
+  </div>
+
+
+  <%= render 'footer_admin' %>
+</div>
+

@@ -1,0 +1,46 @@
+<p>总价格</p>
+<p><%=@transaction_order.sum %>元</p>
+<%= form_with(model: transaction_order, local: true) do |form| %>
+  <% if transaction_order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(transaction_order.errors.count, "error") %> prohibited this transaction_order from being saved:</h2>
+
+      <ul>
+        <% transaction_order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_area :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_area :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :postcode %>
+    <%= form.text_area :postcode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sstatus %>
+    <%= form.text_area :sstatus %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

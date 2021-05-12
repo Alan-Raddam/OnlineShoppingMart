@@ -1,0 +1,583 @@
+<%= render "header" %>
+<!-- :::::: Start Main Container Wrapper :::::: -->
+<main id="main-container" class="main-container">
+  <!-- ::::::  Start Hero Section  ::::::  -->
+  <div class="hero hero--1 slider-dot-fix slider-dot slider-dot-fix slider-dot--center slider-dot-size--medium slider-dot-circle  slider-dot-style--fill slider-dot-style--fill-white-active-white dot-gap__X--10">
+    <!-- Start Single Hero Slide -->
+    <div class="hero-slider">
+      <img src="assets/img/hero/hero-home-1-img-1.jpg" alt="">
+      <div class="hero__content">
+        <div class="container">
+          <div class="row">
+            <div class="col-8 col-lg-8 offset-lg-1 offset-xxl-0 col-xl-6  col-xxl-6">
+              <div class="hero__content--inner">
+                <h1 class="hero-title-1 title title--large title--white text-uppercase">全新运动款</h1>
+                <h1 class="hero-title-2 title title--large title--white font--bold text-uppercase">智能手表</h1>
+                <h6 class="hero-title-3 title title--small title--white pos-relative">
+                  <span class="border-line--small pos-absolute"></span>超高清IPS显示屏，八种运动模式</h6>
+                <a href="<%=product_path 2 %>" class="hero-btn-link btn btn--small btn--white btn--white-hover-black font--bold text-uppercase">立即选购</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- End Single Hero Slide -->
+    <!-- Start Single Hero Slide -->
+
+
+  </div> <!-- ::::::  End Hero Section  ::::::  -->
+
+  <!-- ::::::  Start CMS Section  ::::::  -->
+  <div class="cms cms--1 m-t-100">
+    <div class="container">
+      <div class="row">
+        <!-- Start Single CMS box -->
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="cms__content">
+            <div class="cms__icon">
+              <img class="cms__icon-img" src="assets/img/icon/cms/icon1.png" alt="">
+            </div>
+            <div class="cms__text">
+              <h6 class="cms__title">全场包邮</h6>
+              <span class="cms__des">现在购买，享受全场包邮，免费退货，超过1000+顶级零售商！</span>
+            </div>
+          </div>
+        </div> <!-- End Single CMS box -->
+        <!-- Start Single CMS box -->
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="cms__content">
+            <div class="cms__icon">
+              <img class="cms__icon-img" src="assets/img/icon/cms/icon2.png" alt="">
+            </div>
+            <div class="cms__text">
+              <h6 class="cms__title">7天无理由退货</h6>
+              <span class="cms__des">符合中国《消费者保护法》，七天无理由退换货！100%满意！</span>
+            </div>
+          </div>
+        </div> <!-- End Single CMS box -->
+        <!-- Start Single CMS box -->
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="cms__content">
+            <div class="cms__icon">
+              <img class="cms__icon-img" src="assets/img/icon/cms/icon3.png" alt="">
+            </div>
+            <div class="cms__text">
+              <h6 class="cms__title">轻松支付</h6>
+              <span class="cms__des">您可以采用支付宝，微信进行支付，也可以使用国际信用卡或者paypal！</span>
+            </div>
+          </div>
+        </div> <!-- End Single CMS box -->
+        <!-- Start Single CMS box -->
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="cms__content">
+            <div class="cms__icon">
+              <img class="cms__icon-img" src="assets/img/icon/cms/icon4.png" alt="">
+            </div>
+            <div class="cms__text">
+              <h6 class="cms__title">超高用户口碑</h6>
+              <span class="cms__des">根据《消费者权益报告》等多项第三方调查，我们的消费者满意度位居前列，高达98%！</span>
+            </div>
+          </div>
+        </div> <!-- End Single CMS box -->
+      </div>
+    </div>
+  </div> <!-- ::::::  End CMS Section  ::::::  -->
+
+  <!-- ::::::  Start Product Style - Category Section  ::::::  -->
+  <div class="product m-t-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <!-- Start Section Title -->
+          <div class="section-content m-b-35 text-center">
+            <h5 class="section-content__title">热门分类</h5>
+            <a href="<%=inspect_all_path %>" class="section-content__desc">查看全部商品</a>
+          </div>  <!-- End Section Title -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="clearfix">
+          <!-- Start Single Category Product -->
+          <div class="product__box product__box--catagory product__box--border-hover text-center pos-relative">
+            <div class="product__img-box">
+              <a href="<%= product_type_url id: 1 %>" class="product__img--link  glossy-flash-animate">
+                <img class="product__img" src="assets/img/product/category/category-home-1-img-1.jpg" alt="">
+              </a>
+            </div>
+            <div class="product__content--catagory pos-absolute">
+              <a href="<%= product_type_url id: 1 %>" class="btn btn--box btn--tiny btn--gray btn--gray-hover-red font--bold text-uppercase">
+                数码相机
+              </a>
+            </div>
+          </div> <!-- End Single Category Product -->
+          <!-- Start Single Category Product -->
+          <div class="product__box product__box--catagory product__box--border-hover text-center pos-relative">
+            <div class="product__img-box">
+              <a href="<%= product_type_url id: 2 %>" class="product__img--link glossy-flash-animate">
+                <img class="product__img" src="assets/img/product/category/category-home-1-img-2.jpg" alt="">
+              </a>
+            </div>
+            <div class="product__content--catagory pos-absolute">
+              <a href="<%= product_type_url id: 2 %>" class="btn btn--box btn--tiny btn--gray btn--gray-hover-red font--bold text-uppercase">
+                耳机
+              </a>
+            </div>
+          </div>  <!-- End Single Category Product -->
+          <!-- Start Single Category Product -->
+          <div class="product__box product__box--catagory product__box--border-hover text-center pos-relative">
+            <div class="product__img-box">
+              <a href="<%= product_type_url id: 3 %>" class="product__img--link glossy-flash-animate">
+                <img class="product__img" src="assets/img/product/category/category-home-1-img-3.jpg" alt="">
+              </a>
+            </div>
+            <div class="product__content--catagory pos-absolute">
+              <a href="<%= product_type_url id: 3 %>" class="btn btn--box btn--tiny btn--gray btn--gray-hover-red font--bold text-uppercase ">
+                智能手表
+              </a>
+            </div>
+          </div>  <!-- End Single Category Product -->
+          <!-- Start Single Category Product -->
+          <div class="product__box product__box--catagory product__box--border-hover text-center pos-relative">
+            <div class="product__img-box">
+              <a href="<%= product_type_url id: 4 %>" class="product__img--link glossy-flash-animate">
+                <img class="product__img" src="assets/img/product/category/category-home-1-img-4.jpg" alt="">
+              </a>
+            </div>
+            <div class="product__content--catagory pos-absolute">
+              <a href="<%= product_type_url id: 4 %>" class="btn btn--box btn--tiny btn--gray btn--gray-hover-red font--bold text-uppercase">
+                便携式音响
+              </a>
+            </div>
+          </div>  <!-- End Single Category Product -->
+        </div>
+
+      </div>
+    </div>
+  </div> <!-- ::::::  End Product Style - Category Section  ::::::  -->
+
+  <!-- ::::::  Start banner Section  ::::::  -->
+  <div class="banner m-t-100">
+    <div class="container-fluid">
+      <div class="d-flex flex-lg-row flex-column">
+        <div class="banner__box">
+          <!-- Start Single Banner Item -->
+          <div class="banner__box--single banner__box--single-text-style-1 pos-relative">
+            <a href="<%=product_path 1 %>" class="banner__link glossy-flash-animate">
+              <img src="assets/img/banner/size-large-squar/banner-home-1-img-1-large-squar.jpg" alt="" class="banner__img">
+              <div class="banner__content banner__content--top pos-absolute text-center">
+                <h5 class="banner__title banner__title--small  white-color font--semi-bold m-b-15 text-uppercase">全场八折！仅限周末！</h5>
+                <h2 class="banner__title banner__title--large white-color font--bold m-b-35">YooSee YS200 家庭式相机</h2>
+              </div>
+            </a>
+            <a href="<%=product_path 1 %>" class="btn btn--box btn--small btn--gray btn--gray-hover-red font--bold text-uppercase pos-absolute banner--btn-1">立即了解</a>
+          </div> <!-- End Single Banner Item -->
+        </div>
+        <div class="banner__box">
+          <!-- Start Single Banner Item -->
+          <div class="banner__box--single pos-relative">
+            <a href="<%=product_path 2 %>" class="banner__link glossy-flash-animate">
+              <img src="assets/img/banner/size-large-wide/banner-home-1-img-1-large-wide.jpg" alt="" class="banner__img">
+              <div class="banner__content banner__content--center pos-absolute">
+                <h6 class="banner__title banner__title--tiny  white-color font--semi-bold m-b-15 text-uppercase">Samsung</h6>
+                <h4 class="banner__title banner__title--medium  white-color font--bold m-b-35">无线蓝牙 <br>
+                  耳机</h4>
+              </div>
+            </a>
+            <a href="<%=product_path 2 %>" class="btn btn--underline btn--underline-white font--bold text-uppercase pos-absolute banner--btn-2">立即了解</a>
+          </div> <!-- End Single Banner Item -->
+          <div class="banner__box d-flex flex-sm-row flex-column">
+            <!-- Start Single Banner Item -->
+            <div class="banner__box--single pos-relative">
+              <a href="<%=product_path 3 %>" class="banner__link glossy-flash-animate">
+                <img src="assets/img/banner/size-default-squar/banner-home-1-img-1-default-squar.jpg" alt="" class="banner__img">
+              </a>
+            </div> <!-- End Single Banner Item -->
+            <!-- Start Single Banner Item -->
+            <div class="banner__box--single pos-relative">
+              <a href="<%=product_path 3 %>" class="banner__link glossy-flash-animate">
+                <img src="assets/img/banner/size-default-squar/banner-home-1-img-2-default-squar.jpg" alt="" class="banner__img">
+              </a>
+            </div> <!-- End Single Banner Item -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- ::::::  End banner Section  ::::::  -->
+
+  <!-- ::::::  Start  Product Style - Default Section  ::::::  -->
+  <div class="product m-t-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <!-- Start Section Title -->
+          <div class="section-content m-b-35 text-center">
+            <h5 class="section-content__title">最新到货</h5>
+            <a href="<%=inspect_all_path%>" class="section-content__desc">查看全部商品</a>
+          </div>  <!-- End Section Title -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="default-slider default-slider--hover-bg-red product-default-slider">
+            <div class="product-default-slider-5grid-2rows gap__col--30 gap__row--40">
+              <!-- Start Single Default Product -->
+              <% for @single in @newarrival %>
+                <div class="product__box product__box--default">
+                  <!-- Start Product Image -->
+                  <div class="product__img-box">
+                    <a href=<%= product_path @single %> class="product__img--link">
+                      <% @single.pics.each do |x| %>
+                        <img class="product__img" src="<%= x.url %>" alt="">
+                      <% end %>
+                    </a>
+                    <!-- Start Product Image Inner Nav-->
+                    <ul class="product__img-nav--right pos-absolute">
+                      <li>
+                        <button onclick="reversefav(<%=@single.id %>)">
+                          <% if (current_user == nil || (current_user != nil && Favorite.where(user_id: current_user.id, product_id: @single.id).size == 0)) %>
+                            <i id="fav<%= @single.id %>" class="ion-android-favorite-outline"></i></button>
+                          <% else %>
+                            <i id="fav<%= @single.id %>" class="ion-android-favorite"></i></button>
+                          <% end %>
+                          </li>
+
+                    </ul> <!-- End Product Image Inner Nav -->
+                  </div> <!-- End Product Image -->
+                  <!-- Start Product Content -->
+                  <div class="product__content pos-relative">
+                    <%= link_to @single.name, @single, class: "product__link product__link--weight-light m-t-15" %>
+
+                    <ul class="product__review m-t-5">
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--blank"><i class="ion-android-star"></i></li>
+                    </ul>
+                    <div class="product__price m-t-5">
+                      <span class="product__price-reg"><%= @single.price %>元</span>
+                    </div>
+                    <!-- Start Product Content Inner Nav -->
+                    <ul class="product__content--bottom product__content--bottom-white pos-absolute">
+                      <li>
+                        <a href="#modalAddCart" id='add_to_cart' from="<%= @single.id %>" data-toggle="modal" data-target="#modalAddCart"><i class="ion-bag"></i>加入购物车</a>
+                      </li>
+
+                    </ul> <!-- End Product Content Inner Nav -->
+                  </div> <!-- End Product Content -->
+                </div> <!-- End Single Default Product -->
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--新到达产品展示结束，下面有一个横幅可以放点广告啊干点啥的-->
+
+  <!-- ::::::  Start banner Section  ::::::  -->
+  <div class="banner m-t-100">
+    <div class="container-fluid">
+      <div class="banner__box">
+        <div class="banner__box--single banner__box--single-text-style-1 pos-relative">
+          <!-- Start Single Banner Item -->
+          <a href="product-single-default.html" class="banner__link glossy-flash-animate">
+            <img src="assets/img/banner/size-extra-large-wide/banner-home-1-img-1-extra-large-wide.jpg" alt="" class="banner__img banner__img--size-xl">
+            <div class="banner__content banner__content--center pos-absolute text-center ">
+              <h5 class="banner__title banner__title--small font--semi-bold white-color text-uppercase">夏日大促
+                Smasher</h5>
+              <h2 class="banner__title banner__title--large white-color font--bold">最高节省20%-30%！</h2>
+            </div>
+          </a> <!-- End Single Banner Item -->
+          <a href="product-single-default.html" class="btn btn--box btn--small btn--gray btn--gray-hover-red font--bold text-uppercase pos-absolute banner--btn-3">
+            马上了解</a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- ::::::  End banner Section  ::::::  -->
+
+
+
+  <!-- ::::::  Start  Product Style - Segment Section  ::::::  -->
+  <div class="product product--1 m-t-100 product-type--segment">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-12">
+          <!-- Start Section Title -->
+          <div class="section-content m-b-35">
+            <h5 class="section-content__title">特色商品</h5>
+            <a href="<%=inspect_all_path %>" class="section-content__desc">查看所有商品</a>
+          </div>  <!-- End Section Title -->
+          <div class="product-segment-slider">
+            <div class="product-segment-slider-1grid-3rows gap__row--30 slider-dot slider-dot-fix slider-dot-size--small slider-dot-circle  slider-dot-style--border slider-dot-style--border-black-active-red dot-gap__X--5 dot-gap__Y--30 ">
+              <!-- Start Single Segment Product -->
+              <% @feature_products.each do |x| %>
+                <div class="product__box product__box--segment d-flex">
+                  <!-- Start Product Image -->
+                  <div class="product__img-box pos-relative">
+                    <a href="<%=product_path x %>" class="product__img--link">
+                      <% x.pics.each do |img| %>
+                        <img class="product__img" src="<%= img.url %>" alt="">
+                      <% end %>
+                    </a>
+                  </div> <!-- End Product Image -->
+                  <!-- Start Product Content -->
+                  <div class="product__content">
+                    <a href="<%=product_path x %>" class="product__link product__link--weight-light"> <%=x.name %></a>
+                    <ul class="product__review m-t-5">
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--blank"><i class="ion-android-star"></i></li>
+                    </ul>
+                    <div class="product__price m-t-5">
+                      <span class="product__price-reg">¥
+                        <%=x.price %></span>
+                    </div>
+                  </div> <!-- End Product Content -->
+                </div> <!-- End Single Segment Product -->
+              <% end %>
+              <!-- Start Single Segment Product -->
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="section-content m-b-35">
+            <h5 class="section-content__title">最畅销商品</h5>
+            <a href="<%=inspect_all_path %>" class="section-content__desc">查看所有商品</a>
+          </div>
+          <div class="product-segment-slider">
+            <div class="product-segment-slider-1grid-3rows gap__row--30 slider-dot slider-dot-fix slider-dot-size--small slider-dot-circle  slider-dot-style--border slider-dot-style--border-black-active-red dot-gap__X--5 dot-gap__Y--30 ">
+              <!-- Start Single Segment Product -->
+              <!-- Start Single Segment Product -->
+              <% @bestsell.each do |x| %>
+                <div class="product__box product__box--segment d-flex">
+                  <!-- Start Product Image -->
+                  <div class="product__img-box pos-relative">
+                    <a href="<%=product_path x %>" class="product__img--link">
+                      <% x.pics.each do |img| %>
+                        <img class="product__img" src="<%= img.url %>" alt="">
+                      <% end %>
+                    </a>
+                  </div> <!-- End Product Image -->
+                  <!-- Start Product Content -->
+                  <div class="product__content">
+                    <a href="<%=product_path x %>" class="product__link product__link--weight-light"> <%=x.name %></a>
+                    <ul class="product__review m-t-5">
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--blank"><i class="ion-android-star"></i></li>
+                    </ul>
+                    <div class="product__price m-t-5">
+                      <span class="product__price-reg">¥
+                        <%=x.price %></span>
+                    </div>
+                  </div> <!-- End Product Content -->
+                </div> <!-- End Single Segment Product -->
+              <% end %>
+              <!-- Start Single Segment Product -->
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="section-content m-b-35">
+            <h5 class="section-content__title">打折商品</h5>
+            <a href="<%=inspect_all_path %>" class="section-content__desc">查看所有商品</a>
+          </div>
+          <div class="product-segment-slider">
+            <div class="product-segment-slider-1grid-3rows gap__row--30 slider-dot slider-dot-fix slider-dot-size--small slider-dot-circle  slider-dot-style--border slider-dot-style--border-black-active-red dot-gap__X--5 dot-gap__Y--30 ">
+              <!-- Start Single Segment Product -->
+              <!-- Start Single Segment Product -->
+              <% @discount.each do |x| %>
+                <div class="product__box product__box--segment d-flex">
+                  <!-- Start Product Image -->
+                  <div class="product__img-box pos-relative">
+                    <a href="<%=product_path x %>" class="product__img--link">
+                      <% x.pics.each do |img| %>
+                        <img class="product__img" src="<%= img.url %>" alt="">
+                      <% end %>
+                    </a>
+                  </div> <!-- End Product Image -->
+                  <!-- Start Product Content -->
+                  <div class="product__content">
+                    <a href="<%=product_path x %>" class="product__link product__link--weight-light"> <%=x.name %></a>
+                    <ul class="product__review m-t-5">
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--fill"><i class="ion-android-star"></i></li>
+                      <li class="product__review--blank"><i class="ion-android-star"></i></li>
+                    </ul>
+                    <div class="product__price m-t-5">
+                      <span class="product__price-reg">¥<%=x.price %></span>
+                    </div>
+                  </div> <!-- End Product Content -->
+                </div> <!-- End Single Segment Product -->
+              <% end %>
+              <!-- Start Single Segment Product -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- ::::::  End  Product Style - Segment Section  ::::::  -->
+
+  <!-- ::::::  Start  Company Logo Section  ::::::  -->
+  <div class="company-logo gray-bg m-t-100 p-tb-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="company-logo__area">
+            <!-- Start Single Company Logo Item -->
+            <div class="company-logo__item">
+              <a href="#" class="company-logo__link">
+                <img src="assets/img/company-logo/company-logo-1.png" alt="" class="company-logo__img">
+              </a>
+            </div> <!-- End Single Company Logo Item -->
+            <!-- Start Single Company Logo Item -->
+            <div class="company-logo__item">
+              <a href="#" class="company-logo__link">
+                <img src="assets/img/company-logo/company-logo-2.png" alt="" class="company-logo__img">
+              </a>
+            </div> <!-- End Single Company Logo Item -->
+            <!-- Start Single Company Logo Item -->
+            <div class="company-logo__item">
+              <a href="#" class="company-logo__link">
+                <img src="assets/img/company-logo/company-logo-3.png" alt="" class="company-logo__img">
+              </a>
+            </div> <!-- End Single Company Logo Item -->
+            <!-- Start Single Company Logo Item -->
+            <div class="company-logo__item">
+              <a href="#" class="company-logo__link">
+                <img src="assets/img/company-logo/company-logo-4.png" alt="" class="company-logo__img">
+              </a>
+            </div> <!-- End Single Company Logo Item -->
+            <!-- Start Single Company Logo Item -->
+            <div class="company-logo__item">
+              <a href="#" class="company-logo__link">
+                <img src="assets/img/company-logo/company-logo-5.png" alt="" class="company-logo__img">
+              </a>
+            </div> <!-- End Single Company Logo Item -->
+            <!-- Start Single Company Logo Item -->
+            <div class="company-logo__item">
+              <a href="#" class="company-logo__link">
+                <img src="assets/img/company-logo/company-logo-6.png" alt="" class="company-logo__img">
+              </a>
+            </div> <!-- End Single Company Logo Item -->
+            <!-- Start Single Company Logo Item -->
+            <div class="company-logo__item">
+              <a href="#" class="company-logo__link">
+                <img src="assets/img/company-logo/company-logo-7.png" alt="" class="company-logo__img">
+              </a>
+            </div> <!-- End Single Company Logo Item -->
+            <!-- Start Single Company Logo Item -->
+            <div class="company-logo__item">
+              <a href="#" class="company-logo__link">
+                <img src="assets/img/company-logo/company-logo-8.png" alt="" class="company-logo__img">
+              </a>
+            </div> <!-- End Single Company Logo Item -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- ::::::  End  Company Logo Section  ::::::  -->
+</main>  <!-- :::::: End MainContainer Wrapper :::::: -->
+
+<!-- material-scrolltop button -->
+<button class="material-scrolltop" type="button"></button>
+
+<!-- Start Modal Add cart -->
+
+<!-- Start Modal Quickview cart -->
+<div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center">Quick View</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"> <i class="fal fa-times"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="product-gallery-box m-b-60">
+                <div class="modal-product-image--large">
+                  <img class="img-fluid" src="assets/img/product/gallery/gallery-large/product-gallery-large-1.jpg" alt="">
+                  <img class="img-fluid" src="assets/img/product/gallery/gallery-large/product-gallery-large-2.jpg" alt="">
+                  <img class="img-fluid" src="assets/img/product/gallery/gallery-large/product-gallery-large-3.jpg" alt="">
+                  <img class="img-fluid" src="assets/img/product/gallery/gallery-large/product-gallery-large-4.jpg" alt="">
+                  <img class="img-fluid" src="assets/img/product/gallery/gallery-large/product-gallery-large-5.jpg" alt="">
+                </div>
+                <div class="modal-product-image--thumb modal-product-image--thumb-horizontal pos-relative">
+                  <img class="img-fluid" src="assets/img/product/gallery/gallery-thumb/product-gallery-thumb-1.jpg" alt="">
+                  <img class="img-fluid" src="assets/img/product/gallery/gallery-thumb/product-gallery-thumb-2.jpg" alt="">
+                  <img class="img-fluid" src="assets/img/product/gallery/gallery-thumb/product-gallery-thumb-3.jpg" alt="">
+                  <img class="img-fluid" src="assets/img/product/gallery/gallery-thumb/product-gallery-thumb-4.jpg" alt="">
+                  <img class="img-fluid" src="assets/img/product/gallery/gallery-thumb/product-gallery-thumb-5.jpg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="product-details-box">
+                <h5 class="title title--normal m-b-20">Aliquam lobortis</h5>
+                <div class="product__price">
+                  <span class="product__price-del">$35.90</span>
+                  <span class="product__price-reg">$31.69</span>
+                </div>
+                <div class="product__stock m-tb-20">
+                  <span class="product__stock--in"><i class="fas fa-check-circle"></i> 199 IN STOCK</span>
+                </div>
+                <div class="product-var p-t-30">
+                  <div class="product-color product-var__item">
+                    <span class="product-var__text">Color</span>
+                    <div class="sidebar__color-filter ">
+                      <label class="product-color"><input name="product-color" type="radio" class="product-color-select" value="color-red"><span></span></label>
+                      <label class="product-color"><input name="product-color" type="radio" class="product-color-select" value="color-green" checked><span></span></label>
+                      <label class="product-color"><input name="product-color" type="radio" class="product-color-select" value="color-blue"><span></span></label>
+                    </div>
+                  </div>
+                  <div class="product-quantity product-var__item">
+                    <span class="product-var__text">Quantity</span>
+                    <div class="product-quantity-box">
+                      <div class="quantity">
+                        <input type="number" min="1" max="9" step="1" value="1">
+                      </div>
+                      <a href="#modalAddCart" data-toggle="modal" data-dismiss="modal" class="btn btn--box btn--radius btn--small btn--black btn--black-hover-red btn--uppercase btn--weight m-l-20">+
+                        Add to cart</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="product__desc m-t-25 m-b-30">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin
+                    lectus ipsum, gravida et mattis vulputate, tristique ut lectus</p>
+                </div>
+
+                <div class="product-links">
+                  <div class="product-social m-tb-30">
+                    <span>SHARE THIS PRODUCT</span>
+                    <ul class="product-social-link">
+                      <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                      <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Modal Quickview cart -->
+<%= render "footer" %>

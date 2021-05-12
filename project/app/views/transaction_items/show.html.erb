@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @transaction_item.quantity %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @transaction_item.price %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_item_path(@transaction_item) %> |
+<%= link_to 'Back', transaction_items_path %>

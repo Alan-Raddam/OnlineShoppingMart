@@ -1,0 +1,160 @@
+<%=render 'header' %>
+<!-- ::::::  Start  Breadcrumb Section  ::::::  -->
+<div class="page-breadcrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="page-breadcrumb__menu">
+          <li class="page-breadcrumb__nav"><a href="#">主页</a></li>
+          <li class="page-breadcrumb__nav active">结账</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> <!-- ::::::  End  Breadcrumb Section  ::::::  -->
+
+<!-- ::::::  Start  Main Container Section  ::::::  -->
+<main id="main-container" class="main-container">
+  <div class="container">
+    <div class="row">
+      <!-- Start Client Shipping Address -->
+      <div class="col-lg-7">
+        <div class="section-content">
+          <h5 class="section-content__title">收货人信息</h5>
+        </div>
+        <form action="#" method="post" class="form-box">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-box__single-group">
+                <label for="form-name">收货人姓名</label>
+                <input type="text" id="form-name" placeholder="输入您的姓名" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-box__single-group">
+                <label for="form-postcode">邮编</label>
+                <input type="text" id="form-postcode" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-box__single-group">
+                <label for="form-address">收货地址</label>
+                <input type="text" id="form-address" placeholder="输入您的有效邮寄地址" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-box__single-group">
+                <label for="form-phone">收货人电话</label>
+                <input type="text" id="form-phone" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-box__single-group">
+                <label for="form-email">收货人电子邮箱</label>
+                <input type="email" id="form-email" required>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-box__single-group">
+                <h6>附加信息</h6>
+                <label for="form-additional-info">订单备注</label>
+                <textarea id="form-additional-info" rows="5" placeholder="您可以给此订单添加一些附加备注信息"></textarea>
+              </div>
+            </div>
+            <!-- Add Another Shipping Address -->
+          </div>
+        </form>
+      </div> <!-- End Client Shipping Address -->
+
+      <!-- Start Order Wrapper -->
+      <div class="col-lg-5">
+        <div class="your-order-section">
+          <div class="section-content">
+            <h5 class="section-content__title">订单预览</h5>
+          </div>
+          <div class="your-order-box gray-bg m-t-40 m-b-30">
+            <div class="your-order-product-info">
+              <div class="your-order-top d-flex justify-content-between">
+                <h6 class="your-order-top-left font--bold">商品</h6>
+                <h6 class="your-order-top-right font--bold">价格</h6>
+              </div>
+              <ul class="your-order-middle">
+                <% @totalcost = 0.0 %>
+                <% current_user.cartitems.each do |item| %>
+                  <li class="d-flex justify-content-between">
+                    <span class="your-order-middle-left font--semi-bold"><%= item.product.name %>
+                      X <%= item.quantity %></span>
+                    <span class="your-order-middle-right font--semi-bold">¥<%= item.quantity * item.product.price %></span>
+                    <% @totalcost += item.quantity * item.product.price %>
+                  </li>
+                <% end %>
+              </ul>
+              <div class="your-order-bottom d-flex justify-content-between">
+                <h6 class="your-order-bottom-left font--bold">运费</h6>
+                <span class="your-order-bottom-right font--semi-bold">全场免邮</span>
+              </div>
+              <div class="your-order-total d-flex justify-content-between">
+                <h5 class="your-order-total-left font--bold">总价</h5>
+                <h5 class="your-order-total-right font--bold">¥<%= @totalcost %></h5>
+              </div>
+
+
+              <div class="payment-method">
+                <div class="payment-accordion element-mrg">
+                  <div class="panel-group" id="accordion">
+                    <div class="panel payment-accordion">
+                      <div class="panel-heading" id="method-one">
+                        <h4 class="panel-title">
+                          <a class="collapsed d-flex justify-content-between align-items-center" data-toggle="collapse" data-parent="#accordion" href="#method1" aria-expanded="false">
+                            使用支付宝支付 <i class="far fa-chevron-down"></i>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="method1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <p>本站支持支付宝。您可以在创建订单后，选择使用支付宝支付。</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel payment-accordion">
+                      <div class="panel-heading" id="method-two">
+                        <h4 class="panel-title">
+                          <a class="collapsed d-flex justify-content-between align-items-center" data-toggle="collapse" data-parent="#accordion" href="#method2" aria-expanded="false">
+                            使用微信支付 <i class="far fa-chevron-down"></i>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="method2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <p>本站支持微信支付。您可以在创建订单后，选择使用微信支付。</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel payment-accordion">
+                      <div class="panel-heading" id="method-three">
+                        <h4 class="panel-title">
+                          <a class="collapsed d-flex justify-content-between align-items-center" data-toggle="collapse" data-parent="#accordion" href="#method3" aria-expanded="false">
+                            到付 <i class="far fa-chevron-down"></i>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="method3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <p>本站支持到付。您可以直接选择发货，在收货时使用现金直接向快递员支付订单费用。</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button id='create_order' class="btn btn--block btn--small btn--radius btn--red btn--red-hover-black btn--uppercase font--bold" type="submit">确认提交订单</button>
+        </div>
+      </div> <!-- End Order Wrapper -->
+    </div>
+  </div>
+</main> <!-- ::::::  End  Main Container Section  ::::::  -->
+<%=render 'footer' %>
+    

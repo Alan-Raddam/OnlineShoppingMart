@@ -1,0 +1,194 @@
+<!-- Start Modal Add cart -->
+<div class="modal fade" id="modalAddCart" tabindex="-1" role="dialog"
+     <% if session[:registered] == true %>
+
+     aria-hidden="false"
+     <% else %>
+     aria-hidden="true"
+     <% end %>
+     >
+  <div class="modal-dialog  modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id='add_cart_status'>正在添加到购物车，请稍等</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div id='shopping_list_quickview' class="col-md-6">
+
+
+            </div>
+            <div class="col-md-6 modal__border">
+              <span id='number' class="modal__product-cart-item">正在添加购物车，请稍等...</span>
+              <ul class="modal__product-shipping-info m-tb-15">
+                <li>商品价格：<span id='price'>¥</span></li>
+                <li>邮费：<span id='shipping'>¥0.00</span></li>
+                <li>总价：<span id='total'>¥</span></li>
+              </ul>
+
+              <div class="modal__product-cart-buttons">
+                <a href="#" class="btn btn--box btn--radius btn--small btn--black btn--black-hover-red btn--uppercase btn--weight" data-dismiss="modal">继续购物</a>
+                <%= link_to '查看详情并结账', cartitems_path, class: "btn btn--box btn--radius btn--small btn--black btn--black-hover-red btn--uppercase btn--weight" %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Modal Add cart -->
+
+<footer class="footer m-t-100">
+  <div class="container">
+    <!-- Start Footer Top Section -->
+    <div class="footer__top">
+      <div class="row">
+        <div class="col-lg-2 col-sm-6 col-12">
+          <!-- Start Footer Nav -->
+          <div class="footer__menu">
+            <h4 class="footer__nav-title footer__nav-title--dash footer__nav-title--dash-red">关于我们</h4>
+            <ul class="footer__nav">
+              <li class="footer__list"><a href="" class="footer__link">快递信息</a></li>
+              <li class="footer__list"><a href="#" class="footer__link">隐私政策</a></li>
+              <li class="footer__list"><a href="" class="footer__link">用户条款</a></li>
+              <li class="footer__list"><a href="#" class="footer__link">联系方式</a></li>
+              <li class="footer__list"><a href="" class="footer__link">退款流程</a></li>
+            </ul>
+          </div> <!-- End Footer Nav -->
+        </div>
+        <div class="col-lg-2 col-sm-6 col-12">
+          <div class="footer__menu">
+            <h4 class="footer__nav-title footer__nav-title--dash footer__nav-title--dash-red">我的账户</h4>
+            <ul class="footer__nav">
+              <% if current_user.nil? %>
+                <li class="footer__list"><a href="<%= new_user_session_path %>" class="footer__link">我的账户</a></li>
+                <li class="footer__list"><a href="<%= new_user_session_path %>" class="footer__link">订单</a></li>
+              <% else %>
+                <li class="footer__list"><a href="<%= user_path current_user %>" class="footer__link">我的账户</a></li>
+                <li class="footer__list"><a href="<%= user_path current_user %>" class="footer__link">订单</a></li>
+
+              <% end %>
+
+              <li class="footer__list"><a href="<%= favorites_path %>" class="footer__link">我收藏的商品</a></li>
+              <li class="footer__list"><a href="<%= cartitems_path %>" class="footer__link">我的购物车</a></li>
+              <li class="footer__list"><a href="#" class="footer__link">常见问题</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="footer__about">
+            <div class="footer__logo">
+              <a href="index.html" class="footer__logo-link">
+                <img src="/assets/img/logo/logo-color-red.png" alt="" class="footer__logo-img">
+              </a>
+            </div>
+            <ul class="footer__address">
+              <li class="footer__address-item">地址：北京市海淀区学院路37号</li>
+              <li class="footer__address-item">热线电话：400 123 45678</li>
+              <li class="footer__address-item">联系邮箱： alangy@buaa.edu.cn</li>
+            </ul>
+            <ul class="footer__social-nav">
+              <li class="footer__social-list">
+                <a href="#" class="footer__social-link"><i class="fab fa-facebook-f"></i></a></li>
+              <li class="footer__social-list"><a href="#" class="footer__social-link"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li class="footer__social-list"><a href="#" class="footer__social-link"><i class="fab fa-youtube"></i></a>
+              </li>
+              <li class="footer__social-list">
+                <a href="#" class="footer__social-link"><i class="fab fa-google-plus-g"></i></a></li>
+              <li class="footer__social-list">
+                <a href="#" class="footer__social-link"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="footer__form">
+            <h4 class="footer__nav-title footer__nav-title--dash footer__nav-title--dash-red">订阅最新消息！</h4>
+            <p>在下方输入您的邮箱，即可获取我们的全部新品信息及促销信息</p>
+            <form action="#" class="footer__form-box">
+              <input type="email" placeholder="您的邮箱" required>
+              <button class="btn btn--box btn--tiny btn--red btn--red-hover-red btn--uppercase font--bold " type="submit">订阅!</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> <!-- End Footer Top Section -->
+    <!-- Start Footer Bottom Section -->
+    <div class="footer__bottom">
+      <div class="row">
+        <div class="col-lg-8 col-md-6 col-12">
+          <!-- Start Footer Copyright Text -->
+          <div class="footer__copyright-text">
+            <p>Copyright &copy; <a href="mail://alangy@buaa.edu.cn">alangy</a>. 保留所有权利</p>
+          </div> <!-- End Footer Copyright Text -->
+        </div>
+        <div class="col-lg-4 col-md-6 col-12">
+          <!-- Start Footer Payment Logo -->
+          <div class="footer__payment">
+            <a href="#" class="footer__payment-link">
+              <img src="/assets/img/company-logo/payment.png" alt="" class="footer__payment-img">
+            </a>
+          </div>  <!-- End Footer Payment Logo -->
+        </div>
+      </div>
+    </div> <!-- End Footer Bottom Section -->
+  </div>
+</footer> <!-- ::::::  End  Footer ::::::  -->
+
+<!-- jQuery JS -->
+<script src="/assets/js/vendor/jquery-3.5.1.min.js"></script>
+<!-- jQuery Migrate JS -->
+<script src="/assets/js/vendor/jQuery-migrate-3.3.0.min.js"></script>
+<!-- Modernizer JS -->
+<script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+<!-- Slick Slider JS -->
+<script src="/assets/js/plugins/slick.min.js"></script>
+<!-- Countdown JS -->
+<script src="/assets/js/plugins/jquery.countdown.min.js"></script>
+<!-- Ajax JS -->
+<script src="/assets/js/plugins/jquery.ajaxchimp.min.js"></script>
+<!-- Jquery Nice Select JS -->
+<script src="/assets/js/plugins/jquery.nice-select.min.js"></script>
+<!-- Jquery Ui JS -->
+<script src="/assets/js/plugins/jquery-ui.min.js"></script>
+<!-- jquery magnific popup js -->
+<script src="/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+
+<!-- Main JS -->
+<script src="/assets/js/vendor/vendor.min.js"></script>
+<script src="/assets/js/plugin/plugins.min.js"></script>
+
+<!-- Main js file that contents all jQuery plugins activation. -->
+<script src="/assets/js/main.js"></script>
+<script>function reversefav(id) {
+
+    $.post('/favorites/reverse',
+        {
+            product_id: id
+        },
+        function (data, status) {
+            console.log(data);
+            console.log(status);
+            if (data.status == 1) {
+                $("#fav" + id).attr('class', 'ion-android-favorite')
+                $("#fav2" + id).attr('class', 'ion-android-favorite')
+            } else if (data.status == 0) {
+                $("#fav" + id).attr('class', 'ion-android-favorite-outline')
+                $("#fav2" + id).attr('class', 'ion-android-favorite-outline')
+            } else {
+                alert("添加收藏失败，管理员不允许添加收藏，或者您还没有登录。请登录后再试");
+            }
+        })
+}</script>
+
+</body>
+</html>
+

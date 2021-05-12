@@ -1,0 +1,99 @@
+<%= render 'header_admin' %>
+
+<div class="main-container">
+  <div class="pd-ltr-20 xs-pd-20-10">
+    <div class="min-height-200px">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="title">
+              <h4>编辑用户</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><%= link_to "管理后台", admin_path %></li>
+                <li class="breadcrumb-item"><%= link_to "用户管理", users_url %></li>
+                <li class="breadcrumb-item active" aria-current="page">编辑用户</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-md-6 col-sm-12 text-right">
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                January 2018
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Export List</a>
+                <a class="dropdown-item" href="#">Policies</a>
+                <a class="dropdown-item" href="#">View Assets</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Default Basic Forms Start -->
+
+
+      <div class="pd-20 card-box mb-30">
+        <div class="clearfix">
+          <div class="pull-left">
+            <h4 class="text-blue h4">编辑用户</h4>
+            <p class="mb-0">您可以在此编辑该用户的所有信息，甚至提升该用户权限为管理员。在真实的系统中，可以考虑为管理员也划分等级。</p>
+          </div>
+          <div class="pull-right">
+            <input form="edit_product" type='submit' class="btn btn-primary btn--large scroll-click" rel="content-y" data-toggle="collapse" role="button">
+          </div>
+        </div>
+        <form id='edit_product' enctype="multipart/form-data" action="/users/<%= @user.id %>" accept-charset="UTF-8" method="post">
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">用户ID</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="text" value="<%= @user.id %>" disabled="disabled">
+            </div>
+          </div>
+          <input hidden="hidden" value="patch" name="_method">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">用户名</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="text" name='user[name]' value="<%= @user.name %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">电话</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="number" name='user[phone]' value="<%= @user.phone %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">电子邮箱</label>
+            <div class="col-sm-12 col-md-10">
+              <input class="form-control" type="email" name='user[email]' value="<%= @user.email %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">是否为管理员</label>
+            <div class="col-sm-12 col-md-10">
+              <select name="user[isadmin]" class="custom-select col-12">
+                <option value="<%= @user.isadmin %>" selected=""><%= @user.isadmin %></option>
+                <option value="<%= !@user.isadmin %>"><%= !@user.isadmin %></option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Input Validation End -->
+
+    <div class="footer-wrap pd-20 mb-20 card-box">
+      电子商务管理后台 2020Ruby大作业
+      <a href="http://www.bootstrapmb.com/" target="_blank">By alangy</a>
+    </div>
+
+
+  </div>
+
+
+
+  <%= render 'footer_admin' %>
+</div>
